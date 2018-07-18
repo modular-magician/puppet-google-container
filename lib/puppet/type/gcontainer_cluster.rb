@@ -29,9 +29,10 @@ require 'google/container/property/boolean'
 require 'google/container/property/cluster_addons_config'
 require 'google/container/property/cluster_horizontal_pod_autoscaling'
 require 'google/container/property/cluster_http_load_balancing'
+require 'google/container/property/cluster_logging_service'
 require 'google/container/property/cluster_master_auth'
+require 'google/container/property/cluster_monitoring_service'
 require 'google/container/property/cluster_node_config'
-require 'google/container/property/enum'
 require 'google/container/property/integer'
 require 'google/container/property/namevalues'
 require 'google/container/property/string'
@@ -108,7 +109,7 @@ Puppet::Type.newtype(:gcontainer_cluster) do
     desc 'The authentication information for accessing the master endpoint.'
   end
 
-  newproperty(:logging_service, parent: Google::Container::Property::Enum) do
+  newproperty(:logging_service, parent: Google::Container::Property::LoggingServiceEnum) do
     desc <<-DOC
       The logging service the cluster should use to write logs. Currently available options:
       logging.googleapis.com - the Google Cloud Logging service. none - no logs will be exported
@@ -118,7 +119,7 @@ Puppet::Type.newtype(:gcontainer_cluster) do
     newvalue('none')
   end
 
-  newproperty(:monitoring_service, parent: Google::Container::Property::Enum) do
+  newproperty(:monitoring_service, parent: Google::Container::Property::MonitoringServiceEnum) do
     desc <<-DOC
       The monitoring service the cluster should use to write metrics. Currently available options:
       monitoring.googleapis.com - the Google Cloud Monitoring service. none - no metrics will be

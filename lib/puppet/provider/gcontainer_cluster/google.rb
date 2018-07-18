@@ -33,9 +33,10 @@ require 'google/container/property/boolean'
 require 'google/container/property/cluster_addons_config'
 require 'google/container/property/cluster_horizontal_pod_autoscaling'
 require 'google/container/property/cluster_http_load_balancing'
+require 'google/container/property/cluster_logging_service'
 require 'google/container/property/cluster_master_auth'
+require 'google/container/property/cluster_monitoring_service'
 require 'google/container/property/cluster_node_config'
-require 'google/container/property/enum'
 require 'google/container/property/integer'
 require 'google/container/property/namevalues'
 require 'google/container/property/string'
@@ -83,8 +84,10 @@ Puppet::Type.type(:gcontainer_cluster).provide(:google) do
       name: Google::Container::Property::String.api_munge(fetch['name']),
       description: Google::Container::Property::String.api_munge(fetch['description']),
       master_auth: Google::Container::Property::ClusterMasterAuth.api_munge(fetch['masterAuth']),
-      logging_service: Google::Container::Property::Enum.api_munge(fetch['loggingService']),
-      monitoring_service: Google::Container::Property::Enum.api_munge(fetch['monitoringService']),
+      logging_service:
+        Google::Container::Property::LoggingServiceEnum.api_munge(fetch['loggingService']),
+      monitoring_service:
+        Google::Container::Property::MonitoringServiceEnum.api_munge(fetch['monitoringService']),
       network: Google::Container::Property::String.api_munge(fetch['network']),
       cluster_ipv4_cidr: Google::Container::Property::String.api_munge(fetch['clusterIpv4Cidr']),
       addons_config:
