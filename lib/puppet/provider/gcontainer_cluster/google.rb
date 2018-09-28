@@ -156,6 +156,7 @@ Puppet::Type.type(:gcontainer_cluster).provide(:google) do
   end
 
   def exports
+    raise "Must fetch before accessing exported values." if @fetched.nil?
     {
       endpoint: @fetched['endpoint'],
       master_auth: @fetched['masterAuth'],
