@@ -31,7 +31,7 @@ module Google
   module Container
     module Data
       # A class to manage data for HttpLoadBalancing for cluster.
-      class ClusterHttpLoadBalancing
+      class ClusterHttploadbalancing
         include Comparable
 
         attr_reader :disabled
@@ -49,7 +49,7 @@ module Google
         end
 
         def ==(other)
-          return false unless other.is_a? ClusterHttpLoadBalancing
+          return false unless other.is_a? ClusterHttploadbalancing
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             return false if compare[:self] != compare[:other]
@@ -58,7 +58,7 @@ module Google
         end
 
         def <=>(other)
-          return false unless other.is_a? ClusterHttpLoadBalancing
+          return false unless other.is_a? ClusterHttploadbalancing
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             result = compare[:self] <=> compare[:other]
@@ -76,17 +76,17 @@ module Google
         end
       end
 
-      # Manages a ClusterHttpLoadBalancing nested object
+      # Manages a ClusterHttploadbalancing nested object
       # Data is coming from the GCP API
-      class ClusterHttpLoadBalancingApi < ClusterHttpLoadBalancing
+      class ClusterHttploadbalancingApi < ClusterHttploadbalancing
         def initialize(args)
           @disabled = Google::Container::Property::Boolean.api_munge(args['disabled'])
         end
       end
 
-      # Manages a ClusterHttpLoadBalancing nested object
+      # Manages a ClusterHttploadbalancing nested object
       # Data is coming from the Puppet manifest
-      class ClusterHttpLoadBalancingCatalog < ClusterHttpLoadBalancing
+      class ClusterHttploadbalancingCatalog < ClusterHttploadbalancing
         def initialize(args)
           @disabled = Google::Container::Property::Boolean.unsafe_munge(args['disabled'])
         end
@@ -95,7 +95,7 @@ module Google
 
     module Property
       # A class to manage input to HttpLoadBalancing for cluster.
-      class ClusterHttpLoadBalancing < Google::Container::Property::Base
+      class ClusterHttploadbalancing < Google::Container::Property::Base
         # Used for parsing Puppet catalog
         def unsafe_munge(value)
           self.class.unsafe_munge(value)
@@ -104,13 +104,13 @@ module Google
         # Used for parsing Puppet catalog
         def self.unsafe_munge(value)
           return if value.nil?
-          Data::ClusterHttpLoadBalancingCatalog.new(value)
+          Data::ClusterHttploadbalancingCatalog.new(value)
         end
 
         # Used for parsing GCP API responses
         def self.api_munge(value)
           return if value.nil?
-          Data::ClusterHttpLoadBalancingApi.new(value)
+          Data::ClusterHttploadbalancingApi.new(value)
         end
       end
     end

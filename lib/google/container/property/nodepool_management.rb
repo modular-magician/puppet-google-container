@@ -91,7 +91,7 @@ module Google
           @auto_upgrade = Google::Container::Property::Boolean.api_munge(args['autoUpgrade'])
           @auto_repair = Google::Container::Property::Boolean.api_munge(args['autoRepair'])
           @upgrade_options =
-            Google::Container::Property::NodePoolUpgradeOptions.api_munge(args['upgradeOptions'])
+            Google::Container::Property::NodePoolUpgradeoptions.api_munge(args['upgradeOptions'])
         end
       end
 
@@ -101,7 +101,7 @@ module Google
         def initialize(args)
           @auto_upgrade = Google::Container::Property::Boolean.unsafe_munge(args['auto_upgrade'])
           @auto_repair = Google::Container::Property::Boolean.unsafe_munge(args['auto_repair'])
-          @upgrade_options = Google::Container::Property::NodePoolUpgradeOptions.unsafe_munge(
+          @upgrade_options = Google::Container::Property::NodePoolUpgradeoptions.unsafe_munge(
             args['upgrade_options']
           )
         end

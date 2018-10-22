@@ -31,7 +31,7 @@ module Google
   module Container
     module Data
       # A class to manage data for UpgradeOptions for node_pool.
-      class NodePoolUpgradeOptions
+      class NodePoolUpgradeoptions
         include Comparable
 
         attr_reader :auto_upgrade_start_time
@@ -52,7 +52,7 @@ module Google
         end
 
         def ==(other)
-          return false unless other.is_a? NodePoolUpgradeOptions
+          return false unless other.is_a? NodePoolUpgradeoptions
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             return false if compare[:self] != compare[:other]
@@ -61,7 +61,7 @@ module Google
         end
 
         def <=>(other)
-          return false unless other.is_a? NodePoolUpgradeOptions
+          return false unless other.is_a? NodePoolUpgradeoptions
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             result = compare[:self] <=> compare[:other]
@@ -80,9 +80,9 @@ module Google
         end
       end
 
-      # Manages a NodePoolUpgradeOptions nested object
+      # Manages a NodePoolUpgradeoptions nested object
       # Data is coming from the GCP API
-      class NodePoolUpgradeOptionsApi < NodePoolUpgradeOptions
+      class NodePoolUpgradeoptionsApi < NodePoolUpgradeoptions
         def initialize(args)
           @auto_upgrade_start_time =
             Google::Container::Property::Time.api_munge(args['autoUpgradeStartTime'])
@@ -90,9 +90,9 @@ module Google
         end
       end
 
-      # Manages a NodePoolUpgradeOptions nested object
+      # Manages a NodePoolUpgradeoptions nested object
       # Data is coming from the Puppet manifest
-      class NodePoolUpgradeOptionsCatalog < NodePoolUpgradeOptions
+      class NodePoolUpgradeoptionsCatalog < NodePoolUpgradeoptions
         def initialize(args)
           @auto_upgrade_start_time =
             Google::Container::Property::Time.unsafe_munge(args['auto_upgrade_start_time'])
@@ -103,7 +103,7 @@ module Google
 
     module Property
       # A class to manage input to UpgradeOptions for node_pool.
-      class NodePoolUpgradeOptions < Google::Container::Property::Base
+      class NodePoolUpgradeoptions < Google::Container::Property::Base
         # Used for parsing Puppet catalog
         def unsafe_munge(value)
           self.class.unsafe_munge(value)
@@ -112,13 +112,13 @@ module Google
         # Used for parsing Puppet catalog
         def self.unsafe_munge(value)
           return if value.nil?
-          Data::NodePoolUpgradeOptionsCatalog.new(value)
+          Data::NodePoolUpgradeoptionsCatalog.new(value)
         end
 
         # Used for parsing GCP API responses
         def self.api_munge(value)
           return if value.nil?
-          Data::NodePoolUpgradeOptionsApi.new(value)
+          Data::NodePoolUpgradeoptionsApi.new(value)
         end
       end
     end

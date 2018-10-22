@@ -31,7 +31,7 @@ module Google
   module Container
     module Data
       # A class to manage data for AddonsConfig for cluster.
-      class ClusterAddonsConfig
+      class ClusterAddonsconfig
         include Comparable
 
         attr_reader :http_load_balancing
@@ -52,7 +52,7 @@ module Google
         end
 
         def ==(other)
-          return false unless other.is_a? ClusterAddonsConfig
+          return false unless other.is_a? ClusterAddonsconfig
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             return false if compare[:self] != compare[:other]
@@ -61,7 +61,7 @@ module Google
         end
 
         def <=>(other)
-          return false unless other.is_a? ClusterAddonsConfig
+          return false unless other.is_a? ClusterAddonsconfig
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             result = compare[:self] <=> compare[:other]
@@ -80,29 +80,29 @@ module Google
         end
       end
 
-      # Manages a ClusterAddonsConfig nested object
+      # Manages a ClusterAddonsconfig nested object
       # Data is coming from the GCP API
-      class ClusterAddonsConfigApi < ClusterAddonsConfig
+      class ClusterAddonsconfigApi < ClusterAddonsconfig
         def initialize(args)
-          @http_load_balancing = Google::Container::Property::ClusterHttpLoadBalancing.api_munge(
+          @http_load_balancing = Google::Container::Property::ClusterHttploadbalancing.api_munge(
             args['httpLoadBalancing']
           )
           @horizontal_pod_autoscaling =
-            Google::Container::Property::ClusterHorizontalPodAutoscaling.api_munge(
+            Google::Container::Property::ClusterHorizontalpodautoscaling.api_munge(
               args['horizontalPodAutoscaling']
             )
         end
       end
 
-      # Manages a ClusterAddonsConfig nested object
+      # Manages a ClusterAddonsconfig nested object
       # Data is coming from the Puppet manifest
-      class ClusterAddonsConfigCatalog < ClusterAddonsConfig
+      class ClusterAddonsconfigCatalog < ClusterAddonsconfig
         def initialize(args)
-          @http_load_balancing = Google::Container::Property::ClusterHttpLoadBalancing.unsafe_munge(
+          @http_load_balancing = Google::Container::Property::ClusterHttploadbalancing.unsafe_munge(
             args['http_load_balancing']
           )
           @horizontal_pod_autoscaling =
-            Google::Container::Property::ClusterHorizontalPodAutoscaling.unsafe_munge(
+            Google::Container::Property::ClusterHorizontalpodautoscaling.unsafe_munge(
               args['horizontal_pod_autoscaling']
             )
         end
@@ -111,7 +111,7 @@ module Google
 
     module Property
       # A class to manage input to AddonsConfig for cluster.
-      class ClusterAddonsConfig < Google::Container::Property::Base
+      class ClusterAddonsconfig < Google::Container::Property::Base
         # Used for parsing Puppet catalog
         def unsafe_munge(value)
           self.class.unsafe_munge(value)
@@ -120,13 +120,13 @@ module Google
         # Used for parsing Puppet catalog
         def self.unsafe_munge(value)
           return if value.nil?
-          Data::ClusterAddonsConfigCatalog.new(value)
+          Data::ClusterAddonsconfigCatalog.new(value)
         end
 
         # Used for parsing GCP API responses
         def self.api_munge(value)
           return if value.nil?
-          Data::ClusterAddonsConfigApi.new(value)
+          Data::ClusterAddonsconfigApi.new(value)
         end
       end
     end

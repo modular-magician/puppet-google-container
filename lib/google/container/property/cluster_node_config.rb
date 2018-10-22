@@ -31,7 +31,7 @@ module Google
   module Container
     module Data
       # A class to manage data for NodeConfig for cluster.
-      class ClusterNodeConfig
+      class ClusterNodeconfig
         include Comparable
 
         attr_reader :machine_type
@@ -76,7 +76,7 @@ module Google
         end
 
         def ==(other)
-          return false unless other.is_a? ClusterNodeConfig
+          return false unless other.is_a? ClusterNodeconfig
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             return false if compare[:self] != compare[:other]
@@ -85,7 +85,7 @@ module Google
         end
 
         def <=>(other)
-          return false unless other.is_a? ClusterNodeConfig
+          return false unless other.is_a? ClusterNodeconfig
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             result = compare[:self] <=> compare[:other]
@@ -112,9 +112,9 @@ module Google
         end
       end
 
-      # Manages a ClusterNodeConfig nested object
+      # Manages a ClusterNodeconfig nested object
       # Data is coming from the GCP API
-      class ClusterNodeConfigApi < ClusterNodeConfig
+      class ClusterNodeconfigApi < ClusterNodeconfig
         # rubocop:disable Metrics/MethodLength
         def initialize(args)
           @machine_type = Google::Container::Property::String.api_munge(args['machineType'])
@@ -131,9 +131,9 @@ module Google
         # rubocop:enable Metrics/MethodLength
       end
 
-      # Manages a ClusterNodeConfig nested object
+      # Manages a ClusterNodeconfig nested object
       # Data is coming from the Puppet manifest
-      class ClusterNodeConfigCatalog < ClusterNodeConfig
+      class ClusterNodeconfigCatalog < ClusterNodeconfig
         # rubocop:disable Metrics/MethodLength
         def initialize(args)
           @machine_type = Google::Container::Property::String.unsafe_munge(args['machine_type'])
@@ -156,7 +156,7 @@ module Google
 
     module Property
       # A class to manage input to NodeConfig for cluster.
-      class ClusterNodeConfig < Google::Container::Property::Base
+      class ClusterNodeconfig < Google::Container::Property::Base
         # Used for parsing Puppet catalog
         def unsafe_munge(value)
           self.class.unsafe_munge(value)
@@ -165,13 +165,13 @@ module Google
         # Used for parsing Puppet catalog
         def self.unsafe_munge(value)
           return if value.nil?
-          Data::ClusterNodeConfigCatalog.new(value)
+          Data::ClusterNodeconfigCatalog.new(value)
         end
 
         # Used for parsing GCP API responses
         def self.api_munge(value)
           return if value.nil?
-          Data::ClusterNodeConfigApi.new(value)
+          Data::ClusterNodeconfigApi.new(value)
         end
       end
     end
