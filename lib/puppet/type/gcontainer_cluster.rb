@@ -94,7 +94,7 @@ Puppet::Type.newtype(:gcontainer_cluster) do
     DOC
   end
 
-  newproperty(:node_config, parent: Google::Container::Property::ClusterNodeConfig) do
+  newproperty(:node_config, parent: Google::Container::Property::ClusterNodeconfig) do
     desc <<-DOC
       Parameters used in creating the cluster's nodes. For requests, this field should only be used
       in lieu of a "nodePool" object, since this configuration (along with the "initialNodeCount")
@@ -104,7 +104,7 @@ Puppet::Type.newtype(:gcontainer_cluster) do
     DOC
   end
 
-  newproperty(:master_auth, parent: Google::Container::Property::ClusterMasterAuth) do
+  newproperty(:master_auth, parent: Google::Container::Property::ClusterMasterauth) do
     desc 'The authentication information for accessing the master endpoint.'
   end
 
@@ -145,7 +145,7 @@ Puppet::Type.newtype(:gcontainer_cluster) do
     DOC
   end
 
-  newproperty(:addons_config, parent: Google::Container::Property::ClusterAddonsConfig) do
+  newproperty(:addons_config, parent: Google::Container::Property::ClusterAddonsconfig) do
     desc 'Configurations for the various addons available to run in the cluster.'
   end
 

@@ -31,7 +31,7 @@ module Google
   module Container
     module Data
       # A class to manage data for MasterAuth for cluster.
-      class ClusterMasterAuth
+      class ClusterMasterauth
         include Comparable
 
         attr_reader :username
@@ -61,7 +61,7 @@ module Google
         end
 
         def ==(other)
-          return false unless other.is_a? ClusterMasterAuth
+          return false unless other.is_a? ClusterMasterauth
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             return false if compare[:self] != compare[:other]
@@ -70,7 +70,7 @@ module Google
         end
 
         def <=>(other)
-          return false unless other.is_a? ClusterMasterAuth
+          return false unless other.is_a? ClusterMasterauth
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             result = compare[:self] <=> compare[:other]
@@ -92,9 +92,9 @@ module Google
         end
       end
 
-      # Manages a ClusterMasterAuth nested object
+      # Manages a ClusterMasterauth nested object
       # Data is coming from the GCP API
-      class ClusterMasterAuthApi < ClusterMasterAuth
+      class ClusterMasterauthApi < ClusterMasterauth
         def initialize(args)
           @username = Google::Container::Property::String.api_munge(args['username'])
           @password = Google::Container::Property::String.api_munge(args['password'])
@@ -106,9 +106,9 @@ module Google
         end
       end
 
-      # Manages a ClusterMasterAuth nested object
+      # Manages a ClusterMasterauth nested object
       # Data is coming from the Puppet manifest
-      class ClusterMasterAuthCatalog < ClusterMasterAuth
+      class ClusterMasterauthCatalog < ClusterMasterauth
         def initialize(args)
           @username = Google::Container::Property::String.unsafe_munge(args['username'])
           @password = Google::Container::Property::String.unsafe_munge(args['password'])
@@ -123,7 +123,7 @@ module Google
 
     module Property
       # A class to manage input to MasterAuth for cluster.
-      class ClusterMasterAuth < Google::Container::Property::Base
+      class ClusterMasterauth < Google::Container::Property::Base
         # Used for parsing Puppet catalog
         def unsafe_munge(value)
           self.class.unsafe_munge(value)
@@ -132,13 +132,13 @@ module Google
         # Used for parsing Puppet catalog
         def self.unsafe_munge(value)
           return if value.nil?
-          Data::ClusterMasterAuthCatalog.new(value)
+          Data::ClusterMasterauthCatalog.new(value)
         end
 
         # Used for parsing GCP API responses
         def self.api_munge(value)
           return if value.nil?
-          Data::ClusterMasterAuthApi.new(value)
+          Data::ClusterMasterauthApi.new(value)
         end
       end
     end

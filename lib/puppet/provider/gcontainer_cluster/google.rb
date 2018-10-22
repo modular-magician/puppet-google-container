@@ -82,13 +82,13 @@ Puppet::Type.type(:gcontainer_cluster).provide(:google) do
     {
       name: Google::Container::Property::String.api_munge(fetch['name']),
       description: Google::Container::Property::String.api_munge(fetch['description']),
-      master_auth: Google::Container::Property::ClusterMasterAuth.api_munge(fetch['masterAuth']),
+      master_auth: Google::Container::Property::ClusterMasterauth.api_munge(fetch['masterAuth']),
       logging_service: Google::Container::Property::Enum.api_munge(fetch['loggingService']),
       monitoring_service: Google::Container::Property::Enum.api_munge(fetch['monitoringService']),
       network: Google::Container::Property::String.api_munge(fetch['network']),
       cluster_ipv4_cidr: Google::Container::Property::String.api_munge(fetch['clusterIpv4Cidr']),
       addons_config:
-        Google::Container::Property::ClusterAddonsConfig.api_munge(fetch['addonsConfig']),
+        Google::Container::Property::ClusterAddonsconfig.api_munge(fetch['addonsConfig']),
       subnetwork: Google::Container::Property::String.api_munge(fetch['subnetwork']),
       location: Google::Container::Property::StringArray.api_munge(fetch['location']),
       endpoint: Google::Container::Property::String.api_munge(fetch['endpoint']),
